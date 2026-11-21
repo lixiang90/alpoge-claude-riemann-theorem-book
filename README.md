@@ -1,6 +1,6 @@
 # Alpöge-Claude-Riemann Theorem
 
-[下载修订版 PDF · Download the revised PDF](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/download/v1.0.0/Alpoge-Claude-Riemann-Theorem-Revised.pdf) · [GitHub Release v1.0.0](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/tag/v1.0.0)
+[下载修订版 PDF · Download the revised PDF](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/download/v1.0.1/Alpoge-Claude-Riemann-Theorem-Revised.pdf) · [GitHub Release v1.0.1](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/tag/v1.0.1)
 
 ## 中文
 
