@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="319" height="185" preserveAspectRatio="xMinYMin meet" viewBox="0 0 319 185" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="319" height="185"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-185)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 21.2,68 L 150.4,68 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.55; stroke-dasharray: 2, 2;"/>
+			<path d="M 21.2,108.8 L 150.4,108.8 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.55; stroke-dasharray: 2, 2;"/>
+			<path d="M 29.7,6.8 L 29.7,170 Z" style="stroke: rgb(33%,35%,34%); stroke-linecap: butt; stroke-width: 0.65; stroke-dasharray: 2, 2;"/>
+			<path d="M 87.5,6.8 L 87.5,170 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<circle cx="87.5" cy="68" r="57.8" style="stroke: rgb(13%,32%,41%); stroke-linecap: butt; stroke-width: 1.15; fill: none; fill-rule: evenodd; stroke-dasharray: 4, 2;"/>
+			<circle cx="87.5" cy="68" r="2.3" style="stroke: rgb(13%,32%,41%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,32%,41%); fill-rule: evenodd;"/>
+			<circle cx="87.5" cy="108.8" r="51.68" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 1.15; fill: none; fill-rule: evenodd; stroke-dasharray: 2, 2;"/>
+			<circle cx="87.5" cy="108.8" r="2.3" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 1; fill: rgb(59%,32%,21%); fill-rule: evenodd;"/>
+			<path d="M 39.9,108.8 L 87.5,108.8 Z" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 1;"/>
+			<circle cx="39.9" cy="108.8" r="2.6" style="stroke: rgb(14%,15%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(14%,15%,15%); fill-rule: evenodd;"/>
+			<text x="22.779999999999998" y="113.8" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,227) scale(1,-1)">pole</text>
+			<text x="91.5" y="58" style="font-family: Helvetica; font-size: 7.2px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,116) scale(1,-1)">real center</text>
+			<text x="91.5" y="112.8" style="font-family: Helvetica; font-size: 7.2px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,225) scale(1,-1)">shifted center</text>
+			<text x="165" y="135" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(13%,32%,41%); stroke:none;" transform="translate(0,270) scale(1,-1)">Disk at the real center</text>
+			<text x="165" y="121" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,242) scale(1,-1)">No pole inside its radius D.</text>
+			<text x="165" y="96" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(59%,32%,21%); stroke:none;" transform="translate(0,192) scale(1,-1)">Disk after the height shift</text>
+			<text x="165" y="82" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,164) scale(1,-1)">A pole lies at distance d &lt; D.</text>
+			<text x="165" y="55" style="font-family: Helvetica-Bold; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,110) scale(1,-1)">Vertical dotted line</text>
+			<text x="165" y="42" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,84) scale(1,-1)">Boundary of the half-plane</text>
+			<text x="165" y="31" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,62) scale(1,-1)">tested by the upper estimate.</text>
+		</g>
+	</g>
+</svg>

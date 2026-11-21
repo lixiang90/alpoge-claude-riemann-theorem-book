@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="330" height="133" preserveAspectRatio="xMinYMin meet" viewBox="0 0 330 133" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="330" height="133"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-133)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 109.4,20 L 109.4,116 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.5; stroke-dasharray: 2, 2;"/>
+			<text x="107.17599999999999" y="9" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,18) scale(1,-1)">4</text>
+			<path d="M 160.4,20 L 160.4,116 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.5; stroke-dasharray: 2, 2;"/>
+			<text x="158.176" y="9" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,18) scale(1,-1)">5</text>
+			<path d="M 236.9,20 L 236.9,116 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.5; stroke-dasharray: 2, 2;"/>
+			<text x="231.34" y="9" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,18) scale(1,-1)">6.5</text>
+			<path d="M 287.9,20 L 287.9,116 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.5; stroke-dasharray: 2, 2;"/>
+			<text x="282.34" y="9" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,18) scale(1,-1)">7.5</text>
+			<path d="M 313.4,20 L 313.4,116 Z" style="stroke: rgb(78%,78%,75%); stroke-linecap: butt; stroke-width: 0.5; stroke-dasharray: 2, 2;"/>
+			<text x="311.176" y="9" style="font-family: Helvetica; font-size: 8px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,18) scale(1,-1)">8</text>
+			<text x="5" y="95" style="font-family: Helvetica; font-size: 9px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,190) scale(1,-1)">raw window</text>
+			<path d="M 109.4,98 L 313.4,98 Z" style="stroke: rgb(33%,35%,34%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<circle cx="109.39999999999999" cy="98" r="2.25" style="stroke: rgb(33%,35%,34%); stroke-linecap: butt; stroke-width: 1; fill: rgb(33%,35%,34%); fill-rule: evenodd;"/>
+			<circle cx="313.4" cy="98" r="2.25" style="stroke: rgb(33%,35%,34%); stroke-linecap: butt; stroke-width: 1; fill: rgb(33%,35%,34%); fill-rule: evenodd;"/>
+			<text x="5" y="65" style="font-family: Helvetica; font-size: 9px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,130) scale(1,-1)">physical x</text>
+			<path d="M 160.4,68 L 287.9,68 Z" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<circle cx="160.39999999999998" cy="68" r="2.25" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 1; fill: rgb(59%,32%,21%); fill-rule: evenodd;"/>
+			<circle cx="287.9" cy="68" r="2.25" style="stroke: rgb(59%,32%,21%); stroke-linecap: butt; stroke-width: 1; fill: rgb(59%,32%,21%); fill-rule: evenodd;"/>
+			<text x="5" y="35" style="font-family: Helvetica; font-size: 9px;fill: rgb(14%,15%,15%); stroke:none;" transform="translate(0,70) scale(1,-1)">raw argument</text>
+			<path d="M 109.4,38 L 236.9,38 Z" style="stroke: rgb(13%,32%,41%); stroke-linecap: butt; stroke-width: 2.2;"/>
+			<circle cx="109.39999999999999" cy="38" r="2.25" style="stroke: rgb(13%,32%,41%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,32%,41%); fill-rule: evenodd;"/>
+			<circle cx="236.9" cy="38" r="2.25" style="stroke: rgb(13%,32%,41%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,32%,41%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>
