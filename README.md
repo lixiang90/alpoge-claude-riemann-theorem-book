@@ -1,28 +1,37 @@
 # Alpöge-Claude-Riemann Theorem
 
-[下载修订版 PDF · Download the revised PDF](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/download/v1.0.1/Alpoge-Claude-Riemann-Theorem-Revised.pdf) · [GitHub Release v1.0.1](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/tag/v1.0.1)
+本仓库收录两本同名英文书，分别由 GPT-6.2 Astra 和 Gemini 4 Neon 撰写。两书讲解 Levent Alpöge 于 2026 年 11 月 20 日公布的、与 Claude 合作完成的 Lean 证明，涵盖黎曼猜想及其对狄利克雷 $L$ 函数的推广。
+
+This repository contains two English-language books under the same title, one by GPT-6.2 Astra and one by Gemini 4 Neon. On 20 November 2026, Levent Alpöge announced a Lean proof developed with Claude. Both books explain how the proof treats the Riemann hypothesis and its generalization to Dirichlet $L$-functions.
+
+| 书稿 / Book | 页数 / Pages | PDF | Typst 主文件 / Entry point |
+| --- | ---: | --- | --- |
+| [GPT-6.2 Astra](book-gpt6.2/) | 291 | [下载修订版 / Download v1.0.1](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/download/v1.0.1/Alpoge-Claude-Riemann-Theorem-Revised.pdf) · [仓库副本 / Repository PDF](book-gpt6.2/pdf/Alpoge-Claude-Riemann-Theorem-Revised.pdf) | [volume.typ](book-gpt6.2/typst/volume.typ) |
+| [Gemini 4 Neon](book-gemini4/) | 608 | [下载 / Download](book-gemini4/pdf/Alpoge-Claude-Riemann-Theorem.pdf?raw=1) | [main.typ](book-gemini4/typst/main.typ) |
+
+[GPT-6.2 Astra v1.0.1 发布说明与 SHA-256 校验值 / Release notes and SHA-256 checksum](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/tag/v1.0.1)
 
 ## 中文
 
-为什么一个复函数的零点能决定素数计数的误差？本书从黎曼 1859 年提出的问题讲起，回顾临界线上零点的研究历史，再介绍梅林变换、狄利克雷特征、格与伽罗瓦上同调。后半部分沿着一个假想的偏线零点展开，说明它会怎样迫使一个素数和越过上界，以及算术估计怎样排除这种可能。
+**GPT-6.2 Astra 修订版**以素数计数的误差为主线。为什么一个复函数的零点能控制这个误差？全书 18 章，从黎曼 1859 年的论文讲到梅林变换和狄利克雷特征，再追踪一个假想的偏线零点如何迫使加权素数和越过算术上界。书中有 25 道附解答的习题，附录 C 对照了数学命题、mathlib 定义和独立核验记录。
 
-本书由 GPT-6.2 Astra 用英文撰写，讲解 Levent Alpöge 于 2026 年 11 月 20 日公布的、与 Claude 合作完成的 Lean 证明，涵盖普通黎曼猜想和狄利克雷 $L$ 函数的相应结论。修订版共 291 页、18 章，含 25 道附解答的习题。附录 C 对照了数学命题、mathlib 定义和独立核验记录。
+**Gemini 4 Neon 版**分四部分、18 章。它用有限域上的 Stepanov 方法引出重数在证明中的作用，随后讲解酉群上的西塔提升和 Bost 斜率不等式，最后回到 Lean 4 形式化。附录 A 按证明步骤列出 Lean 模块，附录 B 汇集渐近参数和主要不等式。
 
 ## English
 
-How can a zero of a complex function govern the error in counting primes? The book begins with Riemann’s 1859 question and the history of zeros on the critical line. It develops the Mellin transform, Dirichlet characters, lattices, and Galois cohomology. The second half follows one hypothetical zero off the line, showing how it would force a weighted prime sum above a bound that arithmetic supplies.
+**The GPT-6.2 Astra revised edition** asks how a zero of a complex function can govern the error in counting primes. Its 18 chapters lead from Riemann’s 1859 paper through Mellin transforms and Dirichlet characters, then follow a hypothetical zero off the critical line to a weighted prime sum that would exceed its arithmetic bound. The book includes 25 problems with solutions. Appendix C compares the mathematical statements with their mathlib definitions and the independent verification record.
 
-Written in English by GPT-6.2 Astra, this book gives an expository account of the Lean proof that Levent Alpöge announced on 20 November 2026 following his work with Claude. It covers the ordinary Riemann hypothesis and the corresponding results for Dirichlet $L$-functions. The revised edition has 291 pages, 18 chapters, and 25 problems with solutions. Appendix C compares the mathematical statements with their mathlib definitions and the independent verification record.
+**The Gemini 4 Neon edition** has four parts and 18 chapters. It uses Stepanov’s method over finite fields to introduce the role of multiplicity, then develops theta lifts on unitary groups and Bost’s slope inequality before turning to the Lean 4 formalization. Appendix A maps the steps of the proof to Lean modules. Appendix B collects the asymptotic parameters and main inequalities.
 
 ## 源码与编译 / Source and build
 
-[Typst 主文件 / Typst entry point](typst/volume.typ) · [仓库中的 PDF / PDF in the repository](pdf/Alpoge-Claude-Riemann-Theorem-Revised.pdf)
+在仓库根目录用 Typst 0.14.0 运行对应的命令。GPT-6.2 版使用 Arial，Gemini 4 版使用 DejaVu Sans Mono 排版代码。
 
-在仓库根目录用 Typst 0.14.0 编译。发布版使用 Arial 以及 Typst 随附的字体。  
-From the repository root, compile with Typst 0.14.0. The published edition uses Arial alongside Typst’s bundled fonts.
+Run the command for your chosen book from the repository root with Typst 0.14.0. The GPT-6.2 edition uses Arial, and the Gemini 4 edition uses DejaVu Sans Mono for code.
 
 ```sh
-typst compile --root typst typst/volume.typ book.pdf
+typst compile --root book-gpt6.2/typst book-gpt6.2/typst/volume.typ gpt6.2-book.pdf
+typst compile --root book-gemini4/typst book-gemini4/typst/main.typ gemini4-book.pdf
 ```
 
 ## 原始资料 / Primary sources
