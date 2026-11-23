@@ -3,20 +3,37 @@
 // ============================================================================
 #import "template.typ": appendix-chapter, theorem, proposition, lemma, remark, lean-note, insight-box, gtm-navy, gtm-accent, gtm-tint, gtm-rule
 
-// Helper for compact, GTM-styled cross-reference tables
-#let map-table(columns: (24%, 38%, 38%), header, ..rows) = {
-  set text(size: 8.3pt)
-  set par(justify: false, leading: 0.5em)
-  table(
-    columns: columns,
-    stroke: (x: none, y: 0.35pt + luma(215)),
-    fill: (_, y) => if y == 0 { gtm-tint } else if calc.odd(y) { white } else { rgb("#FAFBFD") },
-    inset: (x: 5pt, y: 4.5pt),
-    align: (left, left, left),
-    table.header(..header.map(h => text(weight: "bold", fill: gtm-navy, size: 8.4pt)[#h])),
-    ..rows,
-  )
+// Helper for compact, publication-grade cross-reference tables
+#let map-table(columns: (21%, 39%, 40%), align: auto, header, ..rows) = {
+  set text(size: 7.8pt)
+  set par(justify: false, leading: 0.48em, first-line-indent: 0pt)
+  set table.cell(breakable: false)
+  let col-align = if align == auto { (left,) * columns.len() } else { align }
+  block(width: 100%, above: 0.55em, below: 0.7em)[
+    #table(
+      columns: columns,
+      stroke: (x, y) => (
+        top: if y == 0 { 1.0pt + gtm-navy } else if y == 1 { 0.6pt + gtm-navy } else { 0.3pt + luma(215) },
+        bottom: 0.3pt + luma(215),
+      ),
+      fill: (_, y) => if y == 0 { gtm-tint } else if calc.odd(y) { white } else { rgb("#FAFBFD") },
+      inset: (x: 4.2pt, y: 4.2pt),
+      align: col-align,
+      table.header(
+        repeat: true,
+        ..header.map(h => text(weight: "bold", fill: gtm-navy, size: 8.0pt)[#h]),
+      ),
+      ..rows,
+      table.hline(stroke: 1.0pt + gtm-navy),
+    )
+  ]
 }
+
+#let domain-row(title) = table.cell(
+  colspan: 3,
+  fill: rgb("#EAEFF6"),
+  inset: (x: 5pt, y: 5pt),
+)[#text(weight: "bold", fill: gtm-navy, size: 8.1pt)[#title]]
 
 #let app-a() = [
   #appendix-chapter(
@@ -39,7 +56,8 @@
   + *Entrypoint Layer* (`Main`): the public theorem statements (`Statements.lean`) matching Mathlib's `RiemannHypothesis` and their five-line derivations (`Main.lean`) from `UpperTheory.FinalTheorems.everyCharacter`.
 
   #map-table(
-    columns: (22%, 11%, 23%, 44%),
+    columns: (25%, 9%, 17%, 49%),
+    align: (left, right, left, left),
     ([Library Target], [Files], [Book Chapters], [Primary Mathematical Role]),
     [`Main`], [2], [Ch. 1, 2, 11, 16], [Public statements (`Statements.lean`) and top-level proofs (`Main.lean`) of `riemannHypothesis`, `LFunction_ne_zero_of_half_lt_re`, and `LFunction_eq_zero_re`.],
     [`Development` / `AbelianVarietyTheory`], [81,319], [Ch. 8, 9, 13, 14], [CM curves, abelian schemes, dual abelian varieties, semistable reduction, toroidal compactifications, Arakelov Hilbert–Samuel, and `RankVal` global twisting.],
@@ -68,7 +86,7 @@
   The entire proof executes as a clean linear cascade of implications at the top level. Starting from the unconditional construction of automorphic Galois representations with local-global compatibility (`galoisLocalGlobalStrong_recParameter`) and the existence of the Local Langlands Correspondence (`recTExists`), the library proves the weakened Vandiver window `VWin` (`vwin_of_row`), combines it with the sixty-plus formalized classical pillars (`every_character_of_literature_of_vWin`) to obtain nonvanishing of every Dirichlet $L$-function in $op("Re")(s) > 1\/2$ (`everyCharacter`), and deduces both GRH and RH via the functional equation (`Claim.strip`, `Claim.zeta`).
 
   #map-table(
-    columns: (20%, 42%, 38%),
+    columns: (21%, 39%, 40%),
     ([Monograph Result], [Lean 4 File Path (under `src/`)], [Declaration & Chapter Ref.]),
     [Formal statement of RH & GRH], [`Statements.lean`], [`RiemannZetaZerosOnLine`, `DirichletLNonvanishingRightOfHalf`, `DirichletLZerosOnLine`, `PrimitiveDirichletLZerosOnLine` (Ch. 1, 2)],
     [Riemann Hypothesis (Mathlib)], [`Main.lean`], [`riemannHypothesis : RiemannHypothesis`, `riemannZeta_eq_zero_re` (Ch. 1, 16)],
@@ -91,7 +109,7 @@
   Chapters 1, 2, 5, and 11 reduce GRH to ruling out a putative zero $rho_0 = beta_0 + i gamma_0$ with $beta_0 > 1\/2$ by detecting a forced oscillation or sign-change in smoothed prime-power sums $S_a (x) = sum_(1 <= n <= x) a(n)(x\/n - 1)$ on a dyadic-polynomial window $[Z, Z^(3\/2)]$. The formalization builds the classical de la Vallée Poussin zero-free region, Landau's nonvanishing criterion, the Siegel–Walfisz theorem for arithmetic progressions, and the logarithmic-derivative bounds completely inside `Formalism/` and `Development/AutomorphicArithmetic/CharacterBoxes/`.
 
   #map-table(
-    columns: (22%, 40%, 38%),
+    columns: (21%, 39%, 40%),
     ([Mathematical Concept], [Lean 4 Module Path (under `src/`)], [Key Declarations & Chapters]),
     [Classical zero-free region for $zeta(s)$], [`Formalism/ZeroFreeRegion/Statement.lean`, `FinalZFR.lean`], [`Formalism.ZF.ZeroFreeRegion`, `LogDerivRegion`, `GzPNT` (Ch. 1, 5)],
     [Dirichlet zero-free region & Siegel zero uniqueness], [`Formalism/LandauZeroFreeBounds/Statement.lean`, `FinalSiegel.lean`, `NoZeroComplex.lean`], [`Formalism.ZeroFreeDirichlet.InRegion`, `IsLZero`, `ZFRDirichlet` (Ch. 2, 5)],
@@ -112,7 +130,7 @@
   Chapters 6, 7, 12, and 13 carry the core discovery of Alpöge and Claude: replacing the Frobenius-power derivative $D^m$ of Stepanov's method with a chain of $m approx sqrt(X)$ theta lifts between totally definite unitary groups $U(X_0) -> U(Y_1) -> dots.c -> U(X_m)$, whose nonvanishing is certified by the Rallis inner product formula and the doubling method, and whose Hecke eigenvalues synthesize "automorphic multiplicity" over $bb(Z)$. The supporting representation theory spans `Development/AutomorphicSpectrum`, `Development/WeilBound`, `Development/AutomorphicArithmetic/ThetaCorrespondence`, `CompanionTheory`, and `PositivityTheory`.
 
   #map-table(
-    columns: (22%, 40%, 38%),
+    columns: (21%, 39%, 40%),
     ([Mathematical Concept], [Lean 4 Module Path (under `src/`)], [Key Declarations & Chapters]),
     [Cuspidal spectrum of $op("GL")_n$ & rapid decay], [`Development/AutomorphicSpectrum/Proofs/BlockDecomposition/CuspRapidDecaySiegelGL.lean`, `Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/CuspFormsRapidDecay.lean`], [`GlobalTheory.RapidDecay.cuspRapidDecay`, `UpperTheory.V.Af.cuspSpectrumGL`, `RfCs.cuspidalSpectrumGL` (Ch. 6)],
     [Bernstein–Zelevinsky theory & segments], [`Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinZelevinskyGL/`, `Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/`], [`PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top`, `PositivityTheory.RgGu.segmentRepresentation`, `PositivityTheory.Exh.langlandsExhaustionGL_of_seg` (Ch. 6)],
@@ -134,7 +152,7 @@
   Chapters 8 and 13 construct the integral test data that force high-order local divisibility at inert primes—the $p$-adic analogue of vanishing to order $m$ at every $bb(F)_q$-point in Stepanov's method. This relies on Lubin–Tate and Honda formal groups, the Artin–Hasse exponential, Witt-vector coordinates, complex multiplication of elliptic curves, Weber's ray class field theory, and Wach-module / crystalline lattice twists.
 
   #map-table(
-    columns: (22%, 40%, 38%),
+    columns: (21%, 39%, 40%),
     ([Mathematical Concept], [Lean 4 Module Path (under `src/`)], [Key Declarations & Chapters]),
     [Formal group logarithms & functional equation lemma], [`Formalism/FormalGroupLog/Statement.lean`, `LogDeterminesLaw.lean`], [`Formalism.G.IsHom`, `IsLog`, `LogExistsUnique`, `IsFunEqType`, `FunEqGroup`, `FunEqHom` (Ch. 8)],
     [Formal groups over Witt vectors & weight invariance], [`Formalism/FormalGroupWitt/Statement.lean`, `SubstInjectiveV.lean`, `WeightInvariance.lean`], [Honda/Witt formal group coordinates and $p$-adic valuation invariance (Ch. 8)],
@@ -153,7 +171,7 @@
   Chapters 9 and 14 translate local divisibility at inert primes into a global contradiction via Arakelov geometry and Jean-Benoît Bost's slope inequality. In Lean 4, the Hermitian lattice engine lives in `Formalism/HarderNarasimhan/` and `Formalism/HermitianLattices/`, culminating in the master propositions `DivIneqObjU` and `HeightS` in `Formalism/DivisorInequality/DivIneqTopAnchorU.lean`. The higher-dimensional Arakelov covolume machinery—arithmetic Hilbert–Samuel, Moriwaki bigness, Poincaré–Lelong, Nadel vanishing, toroidal compactifications, and characteristic-zero resolution of singularities—is proved from scratch across `Development/WeilBound`, `Development/AbelianVarietyTheory`, and `Development/ResolutionOfSingularities`.
 
   #map-table(
-    columns: (22%, 40%, 38%),
+    columns: (21%, 39%, 40%),
     ([Mathematical Concept], [Lean 4 Module Path (under `src/`)], [Key Declarations & Chapters]),
     [Hermitian lattices, Arakelov degree, & HN filtration], [`Formalism/HarderNarasimhan/Statement.lean`, `DegSupermodZ.lean`, `QuotRealize.lean`, `ShiftInvariance.lean`], [`Formalism.HN.deg`, `rk`, `slope`, `muMax`, `muMin`, `hnStep`, `slopeList`, `hnPoly`, `DegSupermod`, `MuChar`, `HNStep`, `HNSlopes` (Ch. 9)],
     [Master divisor–slope inequality & height bound], [`Formalism/DivisorInequality/DivIneqTopAnchorU.lean`], [`Formalism.DivisorInequality.DivIneqObjU`, `HeightS` (Ch. 14, App. B)],
@@ -172,7 +190,7 @@
   Chapters 10 and 15 establish the weakened Vandiver window `VWin`: on every cyclotomic-quadratic host field $E$ in a `WinPair` family, the weighted sum of $bb(Z)_ell$-lengths of the Tate–Shafarevich kernels $op("Ш")^1_S (E, bb(Q)_ell \/ bb(Z)_ell (-e))$ for $1 <= e < floor(x^401)$ is bounded by $sqrt(exp(x^epsilon))$. This combines profinite Galois cohomology, local and global Tate duality, the Poitou–Tate nine-term exact sequence, the Greenberg–Wiles Euler characteristic formula, Fontaine–Berger $p$-adic Hodge theory, and the Behrend sphere / modularity-threshold argument in `AutomorphicVarieties/ModularityArgument/`.
 
   #map-table(
-    columns: (22%, 40%, 38%),
+    columns: (21%, 39%, 40%),
     ([Mathematical Concept], [Lean 4 Module Path (under `src/`)], [Key Declarations & Chapters]),
     [Tate–Shafarevich kernel `Sha` & length `shaLen`], [`Formalism/GaloisCohomology/Statement.lean`, `StatementLoc.lean`, `LocalTateDualityK.lean`], [`Formalism.GaloisCohomology.LData`, `QZ`, `qzTw`, `zlTw`, `Sha`, `shaLen` (Ch. 10, 15)],
     [Local Tate duality & local Euler characteristic], [`CompanionTheory/AutomorphicTheory/PadicCyclotomicFields/GcohTop.lean`, `GcohTopEuler.lean`, `Development/AbelianVarietyTheory/Proofs/DivisorProofs/LoceulerHolds.lean`], [`CompanionTheory.LocalTateOrthogonality.Gcoh.top_tate`, `top_euler`, `top_locfin`, `GlobalTheory.LocalDualityAll.localTateDuality` (Ch. 10)],
@@ -195,25 +213,28 @@
   `Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean`
   defines a three-field structure `UpperTheory.LiteratureTheorems.OpenLiteratureStatements`:
 
-  #lean-note(
-    title: "The Three-Field Interface Record",
-    module: "EveryCharacterOfLiteratureOfVWin.lean, lines 220–223",
-  )[
-    ```lean
-    structure UpperTheory.LiteratureTheorems.OpenLiteratureStatements : Prop where
-      caraianiLocalGlobalDual     : UpperTheory.One.M.Row
-      localLanglandsExists        : UpperTheory.Zero.LLC.RecTExists
-      galoisRepOfPolarizedPairLit : UpperTheory.One.M.Row
-    ```
-    In `MainConclusion.lean` (lines 48–54), all three fields are discharged unconditionally by `UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter` (Caraiani / Shin / Harris–Taylor local-global compatibility for polarized regular algebraic cuspidal automorphic representations) and `UpperTheory.Zero.LLC.recTExists` (Harris–Taylor / Henniart Local Langlands Correspondence for $op("GL")_n$).
+  #block(breakable: false)[
+    #lean-note(
+      title: "The Three-Field Interface Record",
+      module: "EveryCharacterOfLiteratureOfVWin.lean, lines 220–223",
+    )[
+      ```lean
+      structure UpperTheory.LiteratureTheorems.OpenLiteratureStatements
+          : Prop where
+        caraianiLocalGlobalDual     : UpperTheory.One.M.Row
+        localLanglandsExists        : UpperTheory.Zero.LLC.RecTExists
+        galoisRepOfPolarizedPairLit : UpperTheory.One.M.Row
+      ```
+      In `MainConclusion.lean` (lines 48–54), all three fields are discharged unconditionally by `UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter` (Caraiani / Shin / Harris–Taylor local-global compatibility for polarized regular algebraic cuspidal automorphic representations) and `UpperTheory.Zero.LLC.recTExists` (Harris–Taylor / Henniart Local Langlands Correspondence for $op("GL")_n$).
+    ]
   ]
 
   From `OpenLiteratureStatements` together with standalone internal proofs, `EveryCharacterOfLiteratureOfVWin.lean` assembles over eighty named literature theorems into eight structured record bundles (`literature_local`, `literature_automorphy`, `literature_cohomology`, `published_results_analytic`, `published_results_local`, `published_results_eigen`, `published_results_first`, and `published_results_arithmetic`). Table 7 catalogs the sixty-plus principal pillars by mathematical domain.
 
   #map-table(
-    columns: (24%, 38%, 38%),
+    columns: (22%, 38%, 40%),
     ([Domain & Classical Theorem], [Lean 4 Wrapper in `EveryCharacterOfLiteratureOfVWin.lean`], [Underlying Proof Declaration]),
-    [*Local & Global $op("GL")_n$ Representation Theory*], [], [],
+    domain-row([Local & Global $op("GL")_n$ Representation Theory]),
     [Bernstein–Zelevinsky finiteness], [`bernstein_zelevinsky_finiteness_of_literature`], [`PositivityTheory.Prw.bernsteinZelevinskyFiniteness_holds`],
     [Bernstein unitary product irreducibility], [`bernstein_unitary_product_irreducible_of_literature`], [`PositivityTheory.RgUd.All.bernsteinUnitaryProductIrreducible`],
     [Zelevinsky polynomial ring structure], [`zelevinsky_polynomial_ring_of_literature`], [`PositivityTheory.Prw.zelevinskyPolynomialRing_of`],
@@ -229,7 +250,7 @@
     [Borel–Casselman & Schur orthogonality], [`borel_casselman_of_literature`, `schur_orthogonality_square_integrable_of_literature`], [`PositivityTheory.Stage1.PM.borelCasselman`, `schurOrthogonalitySquareIntegrable`],
     [Clozel purity & cohomological automorphy], [`clozel_purity_of_literature`, `clozel_cohomological_of_literature`, `regular_algebraic_purity_of_literature`], [`PositivityTheory.Lit1.ClozelPurity.clozelPurity`, `PositivityTheory.Rg.Cz.clozelCohomological`, `GlobalTheory.regularAlgebraicPurity_of_clozel`],
     [Base change for definite unitary groups (Labesse)], [`base_change_isobaric`, `base_change_definite_unitary_group_of_literature`], [`UpperTheory.BaseChangeIdentities.baseChangeN`, `definiteN_of`],
-    [*Real Groups, Theta Lifts, & Automorphic Forms*], [], [],
+    domain-row([Real Groups, Theta Lifts, & Automorphic Forms]),
     [Harish-Chandra modules, finiteness, & analyticity], [`harish_chandra_modules_of_literature`, `harish_chandra_finite_of_literature`, `harish_chandra_analyticity_of_literature`], [`PositivityTheory.Stage1.PM.harishChandraModules`, `PositivityTheory.RgHf.harishChandraFinite`, `GlobalTheory.CompanionTheory.Hypotheses₂.harishChandra_analyticity_density`],
     [Casselman–Wallach globalization], [`casselman_wallach_of_literature`, `gk_globalisation_of_literature`], [`PositivityTheory.CWB.casselmanWallach`, `GlobalTheory.gkGlobalisation_holds`],
     [Discrete series classification & formal degrees], [`discrete_series_classification_of_literature`, `discrete_series_upq_exists_of_literature`, `holomorphic_discrete_series_of_literature`, `formal_degree_compact_dual_of_literature`], [`CompanionTheory.RgExh.discreteSeriesClassification`, `CompanionTheory.RgDs.B.discreteSeriesUpqExists`, `GlobalTheory.HolDS.holomorphicDiscreteSeries_holds`, `PositivityTheory.RgFd.B.formalDegreeCompactDual`],
@@ -240,7 +261,7 @@
     [Siegel–Weil formula (unitary convergent & Schrödinger)], [`siegel_weil_unitary_convergent_of_literature`, `weil_siegel_formula_unitary_of_literature`, `siegel_weil_unitary_schrodinger_of_literature`, `siegel_weil_std_of_literature`], [`UpperTheory.Lit.Sw47.convergent`, `Sw47.weilUnitary`, `PositivityTheory.SiegelWeilCoefficients.field`, `PositivityTheory.SiegelWeilFormula.Fin.siegelWeilStd`],
     [Siegel Eisenstein continuation, doubling, & Rallis inner product], [`siegel_eisenstein_continuation_of_literature`, `doubling_method`, `unramified_doubling_gl_of_literature`, `rallis_inner_product_convergent_of_literature`], [`PositivityTheory.RgEis.Sp.Hd.siegelEisensteinContinuation`, `ResidueKilled.dm_of_two`, `GlobalTheory.UnramDoublingProof.unramifiedDoublingGL`, `UpperTheory.Lit.Rallis.RallisIPProof.rallis_of_dm`],
     [Strong approximation for $op("SU")$ & Hermitian Hasse–Landherr], [`strong_approx_su_of_literature`, `hermitian_hasse_principle_of_literature`, `hasse_norm_st_of_literature`, `landherr_st_of_literature`], [`GlobalTheory.StrongApproxSUProof.strongApproxSU`, `PositivityTheory.Stage1.PM.hermitianHassePrinciple`, `GlobalTheory.QNorm.hasseNormSt`, `landherr_and_landherrSt`],
-    [*Algebraic, Complex, & Arakelov Geometry*], [], [],
+    domain-row([Algebraic, Complex, & Arakelov Geometry]),
     [Hironaka resolution of singularities & principalization], [`resolution_char_zero_of_literature`, `principalisation_of_literature`, `principalisation_char_zero_of_literature`], [`PositivityTheory.Resplug.ResolutionBlowup.resolutionCharZero`, `PositivityTheory.ResPlug.WeightsCompactStabilizer.principalisation_closed`],
     [Poincaré–Lelong, Chern–Weil, & Arakelov calculus], [`poincare_lelong_inv_of_literature`, `good_chern_weil_of_literature`, `ar_calc_of_literature`, `ar_degree_of_literature`, `cycle_heights_of_literature`], [`PositivityTheory.Tls2.Pl.poincareLelongInv`, `GlobalTheory.GoodMetric.goodChernWeil`, `ArakelovDirectHeights.arCalc_direct`, `cycleHeights_direct`],
     [Arithmetic Hilbert–Samuel & Moriwaki bigness], [`arith_hilbert_samuel_of_literature`, `vol_ge_of_literature`, `vol_nef_of_literature`, `nef_rr_of_literature`, `nef_numerics_of_literature`], [`GlobalTheory.arithHilbertSamuel_of_principalisation`, `GlobalTheory.VolBr.volGe_of_hilbertSamuel`, `PositivityTheory.Tls2.Nef.nefRR`, `GlobalTheory.nefNumerics_outright`],
@@ -248,7 +269,7 @@
     [Toroidal compactification & Siegel integral models], [`toroidal_compactification_of_literature`, `siegel_toroidal_integral_of_literature`, `toroidal_for_fan_ks_of_literature`], [`GlobalTheory.toroidalCompactification_holds`, `GlobalTheory.siegelToroidalIntegral_holds`, `GlobalTheory.TorKSField.toroidalForFanKS`],
     [Abelian schemes, Grothendieck–Messing, semistable reduction, Zarhin, Fargues], [`dual_abelian_scheme_of_literature`, `grothendieck_messing_of_literature`, `semistable_reduction_st_of_literature`, `zarhin_statement`, `fargues_exact_of_literature`], [`GlobalTheory.dualAbelianScheme`, `GrothendieckDeformation.grothendieckMessing`, `GlobalTheory.SS.semistableReductionSt`, `PositivityTheory.HtPt.Narrow.zarhin`, `UpperTheory.Lit.farguesExact`],
     [Formal algebraization & Chow forms], [`formal_algebraisation_of_literature`, `chow_form_exists_of_literature`, `serre_holomorphic_sections_of_literature`], [`PositivityTheory.FormalThickening.formalAlgebraisation`, `GlobalTheory.Published.chowFormExists_holds`, `serreHolomorphicSections_holds`],
-    [*Galois Cohomology, Class Field Theory, & $p$-adic Hodge*], [], [],
+    domain-row([Galois Cohomology, Class Field Theory, & $p$-adic Hodge]),
     [Global Artin reciprocity, ray class fields, Chebotarev, Linnik], [`global_artin_reciprocity_of_literature`, `ray_class_field_st_of_literature`, `chebotarev_degree_one_of_literature`, `linnik_of_literature`], [`GlobalTheory.globalArtinReciprocity_holds`, `PositivityTheory.Stage1.PM.rayClassFieldSt`, `GlobalTheory.Published.chebotarevDegreeOne'`, `UpperTheory.Lit.linnik`],
     [Hecke–Tate functional equation & Deligne–Ribet], [`heckeTateFunctionalEquation'`, `hecke_l_entire_and_nonzero_at_one_of_literature`, `deligne_ribet_of_literature`, `siegel_klingen_deligne_ribet_of_literature`], [`GlobalTheory.Top.heckeTateFE`, `PositivityTheory.Stage1.PM.heckeLEntireAndNonzeroAtOne`, `PositivityTheory.PfDR.deligneRibet_holds`],
     [Poitou–Tate duality, local Tate, & Greenberg–Wiles], [`poitou_tate_normalised_of_literature`, `local_tate_duality_of_literature`, `global_euler_char_of_literature`, `greenberg_wiles_of_literature`], [`PositivityTheory.Lit1.PTN.poitouTateNormalised_holds`, `GlobalTheory.LocalDualityAll.localTateDuality`, `PositivityTheory.Lit1.GEN.globalEulerChar_full`, `UpperTheory.Lit.greenbergWiles`],

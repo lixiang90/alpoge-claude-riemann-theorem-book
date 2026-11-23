@@ -236,12 +236,19 @@
     inset: (x: 10pt, y: 8pt),
     radius: 2pt,
   )[
-    #text(size: 9pt, weight: "bold", fill: gtm-navy)[#title]
-    #if module != none {
-      h(0.5em)
-      text(size: 8.2pt, font: "DejaVu Sans Mono", fill: gtm-accent)[(#module)]
-    }
-    #v(0.25em)
+    #block(above: 0pt, below: 0.55em)[
+      #set par(justify: false, first-line-indent: 0pt, leading: 0.55em)
+      #text(size: 9pt, weight: "bold", fill: gtm-navy)[#title]
+      #if module != none {
+        let mod-txt = if type(module) == str {
+          module.replace(regex("([/._])([^\\s])"), m => m.captures.at(0) + "\u{200B}" + m.captures.at(1))
+        } else {
+          module
+        }
+        h(0.45em)
+        text(size: 8.0pt, font: "DejaVu Sans Mono", fill: gtm-accent, hyphenate: false)[(#mod-txt)]
+      }
+    ]
     #set text(size: 9.1pt)
     #body
   ]
@@ -259,8 +266,10 @@
     inset: (x: 10pt, y: 8pt),
     radius: 2pt,
   )[
-    #text(size: 9.2pt, weight: "bold", fill: gtm-navy)[#title]
-    #v(0.25em)
+    #block(above: 0pt, below: 0.55em)[
+      #set par(justify: false, first-line-indent: 0pt, leading: 0.55em)
+      #text(size: 9.2pt, weight: "bold", fill: gtm-navy)[#title]
+    ]
     #set text(size: 9.2pt)
     #body
   ]
@@ -372,7 +381,13 @@
       it
     }
   }
-  show raw: set text(font: "DejaVu Sans Mono", size: 8.2pt)
+  show raw.where(block: true): set text(font: "DejaVu Sans Mono", size: 8.0pt)
+  show raw.where(block: false): it => {
+    let s = it.text
+    let s = s.replace(regex("([/._])([^\\s])"), m => m.captures.at(0) + "\u{200B}" + m.captures.at(1))
+    let s = s.replace(regex("([a-z0-9])([A-Z])"), m => m.captures.at(0) + "\u{200B}" + m.captures.at(1))
+    text(font: "DejaVu Sans Mono", size: 0.84em, hyphenate: false, s)
+  }
 
   set par(
     justify: true,
@@ -389,12 +404,12 @@
 
   // Headings styling
   show heading.where(level: 1): it => {
-    set par(first-line-indent: 0pt)
+    set par(first-line-indent: 0pt, justify: false)
     text(size: 19pt, weight: "bold", fill: gtm-navy)[#it.body]
   }
 
   show heading.where(level: 2): it => {
-    set par(first-line-indent: 0pt)
+    set par(first-line-indent: 0pt, justify: false)
     v(0.75em, weak: true)
     context {
       let c = chapter-counter.get().first()
@@ -415,7 +430,7 @@
   }
 
   show heading.where(level: 3): it => {
-    set par(first-line-indent: 0pt)
+    set par(first-line-indent: 0pt, justify: false)
     v(0.55em, weak: true)
     context {
       let c = chapter-counter.get().first()

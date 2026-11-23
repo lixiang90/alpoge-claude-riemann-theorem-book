@@ -50,29 +50,36 @@
   Table 17.1 summarizes the exact empirical file and line counts of the `main` branch across all libraries.
 
   #figure(
-    table(
-      columns: (auto, 1fr, auto, auto, auto),
-      inset: (x: 6pt, y: 5pt),
-      align: (left, left, right, right, right),
-      stroke: (x, y) => (
-        top: if y == 0 { 1.1pt + gtm-navy } else if y == 1 or y == 10 { 0.6pt + gtm-navy } else { 0.25pt + luma(210) },
-        bottom: if y == 10 { 1.1pt + gtm-navy } else { none },
-      ),
-      fill: (_, y) => if y == 0 { gtm-tint } else if y == 10 { gtm-tint } else { none },
-      [*Library*], [*Primary Mathematical Role*], [*Files*], [*Lines*], [*Share*],
-      [`Development`], [Core proof engine: abelian varieties, automorphic arithmetic, character boxes, étale cohomology, resolution of singularities, Weil bounds], [121,214], [15,474,506], [74.4%],
-      [`Formalism`], [Quantitative analytic/Arakelov machinery: Harder–Narasimhan slopes, Hermitian curvature, Wach lifts, theta supremum bounds, zero-free regions], [15,292], [3,172,983], [15.3%],
-      [`GroundTheory` (+ `GroundTheoryFields`)], [Foundations above Mathlib: local/global fields, arithmetic geometry, automorphic forms, Brauer groups, $p$-adic Hodge theory, Tate cohomology], [6,667], [1,120,090], [5.4%],
-      [`ReciprocityTheory`], [Adelic approximation, class field theory, Chebotarev density, geometry of numbers, $L^2$-$macron(partial)$ estimates, semistable reduction, theta summability], [3,581], [678,634], [3.3%],
-      [`CompanionTheory`], [Archimedean & spectral companions: Harish-Chandra modules, real groups, spectral geometry, eightfold theory, thickening estimates], [1,946], [269,609], [1.3%],
-      [`PositivityTheory`], [Positivity criteria, representation-theoretic and automorphic positivity packages, formalized published theorems], [355], [58,090], [0.3%],
-      [`Lemmata`], [Reusable algebraic, Hermitian linear-algebraic, determinant, and analytic glue (`GeneralBFact*`, `FirstBlockLemma*`, `DetNormLeProdRows`)], [158], [14,830], [0.1%],
-      [Root (`Main`, `Statements`, `Challenge`)], [Public theorem signatures, top-level assembly (`Main.lean`), and Mathlib-only verification challenge (`Challenge.lean`)], [3], [103], [$< 0.01$%],
-      [`Supplements`], [Packaging of top-level kernel claims (`Supplements/Kernels/MainTheorems.lean`)], [1], [55], [$< 0.01$%],
-      [*Total*], [*Complete formalization (`leanprover-community/riemann-hypothesis`, `main`)*], [*149,217*], [*20,788,900*], [*100.0%*],
-    ),
+    {
+      set text(size: 7.8pt)
+      set par(justify: false, leading: 0.45em, first-line-indent: 0pt)
+      table(
+        columns: (24%, 41%, 10%, 14%, 11%),
+        inset: (x: 4pt, y: 4pt),
+        align: (left, left, right, right, right),
+        stroke: (x, y) => (
+          top: if y == 0 { 1.1pt + gtm-navy } else if y == 1 or y == 10 { 0.6pt + gtm-navy } else { 0.25pt + luma(210) },
+          bottom: if y == 10 { 1.1pt + gtm-navy } else { none },
+        ),
+        fill: (_, y) => if y == 0 { gtm-tint } else if y == 10 { gtm-tint } else { none },
+        table.header(
+          [*Library*], [*Primary Mathematical Role*], [*Files*], [*Lines*], [*Share*],
+        ),
+        [`Development`], [Core proof engine: abelian varieties, automorphic arithmetic, character boxes, étale cohomology, resolution of singularities, Weil bounds], [121,214], [15,474,506], [74.4%],
+        [`Formalism`], [Quantitative analytic/Arakelov machinery: Harder–Narasimhan slopes, Hermitian curvature, Wach lifts, theta supremum bounds, zero-free regions], [15,292], [3,172,983], [15.3%],
+        [`GroundTheory` (+ `GroundTheoryFields`)], [Foundations above Mathlib: local/global fields, arithmetic geometry, automorphic forms, Brauer groups, $p$-adic Hodge theory, Tate cohomology], [6,667], [1,120,090], [5.4%],
+        [`ReciprocityTheory`], [Adelic approximation, class field theory, Chebotarev density, geometry of numbers, $L^2$-$macron(partial)$ estimates, semistable reduction, theta summability], [3,581], [678,634], [3.3%],
+        [`CompanionTheory`], [Archimedean & spectral companions: Harish-Chandra modules, real groups, spectral geometry, eightfold theory, thickening estimates], [1,946], [269,609], [1.3%],
+        [`PositivityTheory`], [Positivity criteria, representation-theoretic and automorphic positivity packages, formalized published theorems], [355], [58,090], [0.3%],
+        [`Lemmata`], [Reusable algebraic, Hermitian linear-algebraic, determinant, and analytic glue (`GeneralBFact*`, `FirstBlockLemma*`, `DetNormLeProdRows`)], [158], [14,830], [0.1%],
+        [Root (`Main`, `Statements`, `Challenge`)], [Public theorem signatures, top-level assembly (`Main.lean`), and Mathlib-only verification challenge (`Challenge.lean`)], [3], [103], [#box[$< 0.01$%]],
+        [`Supplements`], [Packaging of top-level kernel claims (`Supplements/Kernels/MainTheorems.lean`)], [1], [55], [#box[$< 0.01$%]],
+        [*Total*], [*Complete formalization (`leanprover-community/riemann-hypothesis`, `main`)*], [*149,217*], [*20,788,900*], [*100.0%*],
+      )
+    },
     caption: [Empirical breakdown of the ten-library architecture of `leanprover-community/riemann-hypothesis` (`main` branch). Share percentages are by line count; the original November 20, 2026 release contained $175,187$ files and $17,374,215$ lines.],
   )
+  #v(0.55em)
 
   === Mathematical Role of Each Library
 

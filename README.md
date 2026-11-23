@@ -7,7 +7,7 @@ This repository contains two English-language books under the same title, one by
 | 书稿 / Book | 页数 / Pages | PDF | Typst 主文件 / Entry point |
 | --- | ---: | --- | --- |
 | [GPT-6.2 Astra](book-gpt6.2/) | 291 | [下载修订版 / Download v1.0.1](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/download/v1.0.1/Alpoge-Claude-Riemann-Theorem-Revised.pdf) · [仓库副本 / Repository PDF](book-gpt6.2/pdf/Alpoge-Claude-Riemann-Theorem-Revised.pdf) | [volume.typ](book-gpt6.2/typst/volume.typ) |
-| [Gemini 4 Neon](book-gemini4/) | 608 | [下载 / Download](book-gemini4/pdf/Alpoge-Claude-Riemann-Theorem.pdf?raw=1) | [main.typ](book-gemini4/typst/main.typ) |
+| [Gemini 4 Neon](book-gemini4/) | 595 | [下载 / Download](book-gemini4/pdf/Alpoge-Claude-Riemann-Theorem.pdf?raw=1) | [main.typ](book-gemini4/typst/main.typ) |
 
 [GPT-6.2 Astra v1.0.1 发布说明与 SHA-256 校验值 / Release notes and SHA-256 checksum](https://github.com/lixiang90/alpoge-claude-riemann-theorem-book/releases/tag/v1.0.1)
 
